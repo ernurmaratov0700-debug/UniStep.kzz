@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniStep Platform</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb, #60a5fa);
+    color: white;
+}
+
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+}
+
+.sidebar h2 { margin-bottom: 30px; }
+.sidebar a { display: block; color: white; text-decoration: none; margin: 15px 0; }
+
+.main { margin-left: 240px; padding: 30px; }
+
+.card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #2563eb;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin: 5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>🎓 UniStep</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">GPA</a>
+    <a href="#">Deadline</a>
+</div>
+
+<div class="main">
+    <h1>Қош келдің 👋</h1>
+
+    <div class="card">
+        <h3>📊 GPA Калькулятор</h3>
+        <input type="number" id="grade" placeholder="Баға">
+        <input type="number" id="credit" placeholder="Кредит">
+        <button onclick="calculateGPA()">Есептеу</button>
+        <p id="result"></p>
+    </div>
+
+    <div class="card">
+        <h3>🤖 Кеңес</h3>
+        <button onclick="getAdvice()">Кеңес алу</button>
+        <p id="aiResult"></p>
+    </div>
+</div>
+
+<script>
+// GPA
+function calculateGPA() {
+    let grade = document.getElementById("grade").value;
+    let credit = document.getElementById("credit").value;
+
+    if(grade && credit) {
+        let gpa = (grade / 25) * credit;
+        document.getElementById("result").innerText =
+            "GPA: " + gpa.toFixed(2);
+    } else {
+        document.getElementById("result").innerText =
+            "Мәлімет енгіз!";
+    }
+}
+
+// Тегін AI
+function getAdvice() {
+    let advices = [
+        "Күн сайын аз-аздан оқысаң GPA өседі",
+        "Кредиті көп пәндерге фокус жаса",
+        "Deadline-ты өткізіп алма",
+        "Қайталау – ең маңызды нәрсе",
+        "Конспект жазу GPA көтереді"
+    ];
+
+    let random = advices[Math.floor(Math.random() * advices.length)];
+    document.getElementById("aiResult").innerText = random;
+}
+</script>
+
+</body>
+</html>
