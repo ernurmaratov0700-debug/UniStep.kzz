@@ -3,48 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniStep - Цифрлық Ментор</title>
+    <title>UniStep - 1-курс Менторы</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        :root { --primary-color: #2c3e50; --secondary-color: #3498db; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
-        .hero { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 60px 0; text-align: center; }
-        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .card:hover { transform: translateY(-5px); }
-        .btn-main { background-color: #e74c3c; color: white; border-radius: 25px; padding: 10px 30px; }
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; }
+        .navbar { background-color: var(--primary); }
+        .hero-section { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            padding: 80px 0; 
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+        .card-custom {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            height: 100%;
+        }
+        .card-custom:hover { transform: translateY(-10px); }
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        .btn-calc { background-color: var(--accent); color: white; border-radius: 25px; }
+        .lost-found-item { border-left: 5px solid var(--accent); background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>UniStep: 1-курс студенттеріне арналған цифрлық ментор</h1>
-        <p>Университет өміріне бейімделуді жеңілдетуге арналған портал</p>
-    </div>
+
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-walking"></i> UniStep</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">UniStep: Цифрлық Ментор</h1>
+            <p class="lead">Университетке бейімделудің ең оңай жолы</p>
+        </div>
+    </header>
 
     <div class="container my-5">
-        <div class="row g-4">
+        
+        <div class="row g-4 text-center">
             <div class="col-md-4">
-                <div class="card p-4 text-center">
-                    <h3>📚 Глоссарий</h3>
-                    <p>GPA, Силлабус, Эдвайзер деген не? Барлық терминдер осында.</p>
+                <div class="card card-custom p-4">
+                    <div class="icon-box"><i class="fas fa-book-open"></i></div>
+                    <h4>Глоссарий</h4>
+                    <p class="text-muted">GPA, Силлабус, Эдвайзер — барлық терминдерге түсініктеме.</p>
+                    <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#glossaryModal">Ашу</button>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card p-4 text-center">
-                    <h3>📅 Кесте</h3>
-                    <p>Сабақ уақытын және дедлайндарды ешқашан өткізіп алмаңыз.</p>
+                <div class="card card-custom p-4">
+                    <div class="icon-box"><i class="fas fa-map-marked-alt"></i></div>
+                    <h4>Карта</h4>
+                    <p class="text-muted">Асхана, кітапхана және оқу залдарының орналасуы.</p>
+                    <button class="btn btn-outline-primary btn-sm">Көру</button>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card p-4 text-center">
-                    <h3>📍 Карта</h3>
-                    <p>Асхана мен кітапхананы оңай табыңыз.</p>
+                <div class="card card-custom p-4">
+                    <div class="icon-box"><i class="fas fa-bullhorn"></i></div>
+                    <h4>Хабарландыру</h4>
+                    <p class="text-muted">Маңызды шаралар мен Lost & Found қызметі.</p>
+                    <button class="btn btn-outline-primary btn-sm">Тізімді көру</button>
                 </div>
             </div>
         </div>
-        
-        <div class="mt-5 text-center">
-            <button class="btn btn-main btn-lg">Толығырақ білу</button>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card card-custom p-5 shadow-lg">
+                    <h2 class="text-center mb-4"><i class="fas fa-calculator text-danger"></i> Интерактивті GPA Калькулятор</h2>
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-md-4">
+                            <label class="form-label">Бағаңыз (0-100):</label>
+                            <input type="number" id="userScore" class="form-control form-control-lg" placeholder="Мысалы: 95">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Кредит саны:</label>
+                            <input type="number" id="userCredits" class="form-control form-control-lg" placeholder="Мысалы: 3">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button onclick="calculate()" class="btn btn-calc btn-lg w-100 shadow">Есептеу</button>
+                        </div>
+                    </div>
+                    <div id="gpaResult" class="text-center mt-4 h4 text-primary"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h3 class="mb-4">🔍 Табылған заттар</h3>
+                <div class="lost-found-item shadow-sm">
+                    <strong>Табылды:</strong> Apple AirPods (Кітапхана, 3-қабат)
+                </div>
+                <div class="lost-found-item shadow-sm" style="border-left-color: #f1c40f;">
+                    <strong>Жоғалды:</strong> Студенттік билет (Асхана маңы)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-custom p-4 bg-white">
+                    <h3><i class="fas fa-user-tie text-primary"></i> Digital Advisor</h3>
+                    <p class="small text-muted">Эдвайзерге анонимді сұрақ қойыңыз:</p>
+                    <textarea class="form-control mb-3" rows="3" placeholder="Сұрағыңызды жазыңыз..."></textarea>
+                    <button class="btn btn-primary w-100 shadow-sm" onclick="alert('Сұрағыңыз жіберілді!')">Жіберу</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="modal fade" id="glossaryModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Студенттік Глоссарий</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><strong>GPA:</strong> Орташа үлгерім балы.</li>
+                        <li><strong>Силлабус:</strong> Пәннің оқу жоспары.</li>
+                        <li><strong>Эдвайзер:</strong> Сіздің академиялық кеңесшіңіз.</li>
+                        <li><strong>Ретроспекция:</strong> Өткен материалды қайталау.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 text-muted">
+        <p>&copy; 2026 UniStep Project | Digital Future Innovation</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function calculate() {
+            const score = document.getElementById('userScore').value;
+            const resultDiv = document.getElementById('gpaResult');
+            
+            if(!score) {
+                resultDiv.innerHTML = "Бағаны енгізіңіз!";
+                return;
+            }
+
+            let gpa = 0;
+            let letter = "";
+
+            if (score >= 95) { gpa = 4.0; letter = "A"; }
+            else if (score >= 90) { gpa = 3.67; letter = "A-"; }
+            else if (score >= 85) { gpa = 3.33; letter = "B+"; }
+            else if (score >= 80) { gpa = 3.0; letter = "B"; }
+            else if (score >= 75) { gpa = 2.67; letter = "B-"; }
+            else { gpa = 2.0; letter = "C"; }
+
+            resultDiv.innerHTML = `Нәтиже: <strong>${gpa} (${letter})</strong> <br> <small>Жақсы нәтиже! Тоқтамаңыз! 🚀</small>`;
+        }
+    </script>
 </body>
 </html>
