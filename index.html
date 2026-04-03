@@ -1,114 +1,50 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UniStep Platform</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #1e3a8a, #2563eb, #60a5fa);
-    color: white;
-}
-
-.sidebar {
-    width: 220px;
-    height: 100vh;
-    position: fixed;
-    background: rgba(0,0,0,0.3);
-    padding: 20px;
-}
-
-.sidebar h2 { margin-bottom: 30px; }
-.sidebar a { display: block; color: white; text-decoration: none; margin: 15px 0; }
-
-.main { margin-left: 240px; padding: 30px; }
-
-.card {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-button {
-    background: #2563eb;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-}
-
-input {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin: 5px;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniStep - Цифрлық Ментор</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --primary-color: #2c3e50; --secondary-color: #3498db; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
+        .hero { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 60px 0; text-align: center; }
+        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-5px); }
+        .btn-main { background-color: #e74c3c; color: white; border-radius: 25px; padding: 10px 30px; }
+    </style>
 </head>
 <body>
-
-<div class="sidebar">
-    <h2>🎓 UniStep</h2>
-    <a href="#">Dashboard</a>
-    <a href="#">GPA</a>
-    <a href="#">Deadline</a>
-</div>
-
-<div class="main">
-    <h1>Қош келдің 👋</h1>
-
-    <div class="card">
-        <h3>📊 GPA Калькулятор</h3>
-        <input type="number" id="grade" placeholder="Баға">
-        <input type="number" id="credit" placeholder="Кредит">
-        <button onclick="calculateGPA()">Есептеу</button>
-        <p id="result"></p>
+    <div class="hero">
+        <h1>UniStep: 1-курс студенттеріне арналған цифрлық ментор</h1>
+        <p>Университет өміріне бейімделуді жеңілдетуге арналған портал</p>
     </div>
 
-    <div class="card">
-        <h3>🤖 Кеңес</h3>
-        <button onclick="getAdvice()">Кеңес алу</button>
-        <p id="aiResult"></p>
+    <div class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 text-center">
+                    <h3>📚 Глоссарий</h3>
+                    <p>GPA, Силлабус, Эдвайзер деген не? Барлық терминдер осында.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center">
+                    <h3>📅 Кесте</h3>
+                    <p>Сабақ уақытын және дедлайндарды ешқашан өткізіп алмаңыз.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center">
+                    <h3>📍 Карта</h3>
+                    <p>Асхана мен кітапхананы оңай табыңыз.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-5 text-center">
+            <button class="btn btn-main btn-lg">Толығырақ білу</button>
+        </div>
     </div>
-</div>
-
-<script>
-// GPA
-function calculateGPA() {
-    let grade = document.getElementById("grade").value;
-    let credit = document.getElementById("credit").value;
-
-    if(grade && credit) {
-        let gpa = (grade / 25) * credit;
-        document.getElementById("result").innerText =
-            "GPA: " + gpa.toFixed(2);
-    } else {
-        document.getElementById("result").innerText =
-            "Мәлімет енгіз!";
-    }
-}
-
-// Тегін AI
-function getAdvice() {
-    let advices = [
-        "Күн сайын аз-аздан оқысаң GPA өседі",
-        "Кредиті көп пәндерге фокус жаса",
-        "Deadline-ты өткізіп алма",
-        "Қайталау – ең маңызды нәрсе",
-        "Конспект жазу GPA көтереді"
-    ];
-
-    let random = advices[Math.floor(Math.random() * advices.length)];
-    document.getElementById("aiResult").innerText = random;
-}
-</script>
-
 </body>
 </html>
